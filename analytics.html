@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Analytics Dashboard </title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+    }
+
+  nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px;
+  background-color: #95bfb1;
+  margin-bottom: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #000;
+}
+
+    .dashboard {
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
+    }
+    .dashboard h2{
+      color: #8099c1a8;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    .metrics {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      gap: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+
+    }
+    .metric {
+      text-align: center;
+      flex: 1 1 150px;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+   <!-- Navigation bar -->
+  <nav>
+    <ul type="none">
+     <a href="index.html"><li>Home</li></a>
+     <a href=""><li>About</li></a>
+     <a href=""><li>Contact us</li></a>
+     <a href=""><li>Services</li></a>
+
+    </ul>
+  </nav>
+
+
+  <div class="dashboard">
+    <h2>Analytics Overview</h2>
+    <div class="metrics">
+      <div class="metric">
+        <h3>Total Sales</h3>
+        <p id="totalSales">$0</p>
+      </div>
+      <div class="metric">
+        <h3>Total Expense</h3>
+        <p id="totalExpense">$0</p>
+      </div>
+      <div class="metric">
+        <h3>Total Income</h3>
+        <p id="totalIncome">$0</p>
+      </div>
+      <div class="metric">
+        <h3>Customers</h3>
+        <p id="totalCustomers">0</p>
+      </div>
+    </div>
+    <canvas id="salesChart"></canvas>
+  </div>
+
+  <script>
+    // Sample data
+    const salesData = [1200, 1500, 1100, 1800, 2200, 1700, 2000];
+    const expenseData = [700, 800, 600, 900, 1000, 850, 900];
+    const incomeData = salesData.map((sale, i) => sale - expenseData[i]);
+    const customersData = [10, 12, 9, 14, 15, 11, 13];
+    const labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+    // Calculate totals
+    const totalSales = salesData.reduce((sum, val) => sum + val, 0);
+    const totalExpense = expenseData.reduce((sum, val) => sum + val, 0);
+    const totalIncome = incomeData.reduce((sum, val) => sum + val, 0);
+    const totalCustomers = customersData.reduce((sum, val) => sum + val, 0);
+
+    // Display totals
+    document.getElementById('totalSales').textContent = `$${totalSales}`;
+    document.getElementById('totalExpense').textContent = `$${totalExpense}`;
+    document.getElementById('totalIncome').textContent = `$${totalIncome}`;
+    document.getElementById('totalCustomers').textContent = totalCustomers;
+
+    // Create chart with Sales, Expense, and Income
+    new Chart(document.getElementById('salesChart'), {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Sales ($)',
+            data: salesData,
+            borderColor: 'blue',
+            backgroundColor: 'lightblue',
+            fill: false,
+          },
+          {
+            label: 'Expense ($)',
+            data: expenseData,
+            borderColor: 'red',
+            backgroundColor: 'pink',
+            fill: false,
+          },
+          {
+            label: 'Income ($)',
+            data: incomeData,
+            borderColor: 'green',
+            backgroundColor: 'lightgreen',
+            fill: false,
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Sales, Expense, and Income Over the Week'
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

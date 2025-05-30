@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Customer Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+    }
+
+    nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px;
+  background-color: #95bfb1;
+  margin-bottom: 20px;
+}
+
+nav a {
+    color: #000;
+    text-decoration: none;
+}
+
+    .dashboard {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .dashboard h2{
+      color: #8099c1a8;
+      font-weight: 600;
+    }
+    
+    .metrics {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .metric {
+      text-align: center;
+      flex: 1 1 150px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+
+ <!-- Navigation bar -->
+  <nav>
+    <ul type="none">
+     <a href="index.html"><li>Home</li></a>
+     <a href=""><li>About</li></a>
+     <a href=""><li>Contact us</li></a>
+     <a href=""><li>Services</li></a>
+
+    </ul>
+  </nav>
+
+
+<body>
+  <div class="dashboard">
+    <h2>Customer Overview</h2>
+    <div class="metrics">
+      <div class="metric">
+        <h3>Total Customers</h3>
+        <p id="totalCustomers">0</p>
+      </div>
+      <div class="metric">
+        <h3>New Customers</h3>
+        <p id="newCustomers">0</p>
+      </div>
+      <div class="metric">
+        <h3>Active Customers</h3>
+        <p id="activeCustomers">0</p>
+      </div>
+    </div>
+    <canvas id="customersChart"></canvas>
+  </div>
+
+  <script>
+    // Sample data for a week
+    const dailyNewCustomers = [5, 7, 4, 8, 6, 10, 9];
+    const dailyActiveCustomers = [50, 55, 48, 60, 62, 65, 70];
+
+    // Calculate totals
+    const totalCustomers = 500;  // Example total
+    const newCustomers = dailyNewCustomers.reduce((a,b) => a + b, 0);
+    const activeCustomers = dailyActiveCustomers[dailyActiveCustomers.length - 1];
+
+    // Display totals
+    document.getElementById('totalCustomers').textContent = totalCustomers;
+    document.getElementById('newCustomers').textContent = newCustomers;
+    document.getElementById('activeCustomers').textContent = activeCustomers;
+
+    // Chart showing new customers over the week
+    const labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const ctx = document.getElementById('customersChart').getContext('2d');
+    const customersChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'New Customers',
+          data: dailyNewCustomers,
+          backgroundColor: '#3498db',
+          borderRadius: 5,
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: 'New Customers This Week'
+          }
+        },
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
