@@ -4,8 +4,8 @@
 ManageX – Simplify. Track. Grow.
 
 
-# dashboard name 
-## ManageX is a strong, modern name for a business dashboard. It suggests control, efficiency, and professionalism.
+- dashboard name 
+- ManageX is a strong, modern name for a business dashboard. It suggests control, efficiency, and professionalism.
 
 - ManageX – Your Business, Organized.
 

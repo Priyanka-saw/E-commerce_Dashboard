@@ -506,6 +506,42 @@ main .recent_order a{
   border-radius: var(--border-radius-2);
 }
 
+
+/* footer */
+footer{
+    background-color: #95bfb18f;
+    margin: 50px 0px 0px;
+
+}
+.main-link h3{
+    margin-bottom: 10px;
+    color: grey;
+}
+.main-link ul li{
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+.join h3{
+    margin-bottom: 10px;
+    color: grey;
+}
+.join input{
+    padding: 7px;
+    margin-bottom: 10px;
+}
+.icon-container{
+    display: flex;
+    gap: 15px;
+    font-size: 32px;
+}
+.foot-sec{
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
 /* responsive by using media querying */
 @media screen and (max-width:1200px) {
   .container{
@@ -526,8 +562,6 @@ main .recent_order a{
     display: grid;
     grid-template-columns: repeat(1,1fr);
   }
-
-  
 }
 
 /* for phone */
