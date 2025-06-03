@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Messages Dashboard with Reply & Status</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      transition: 0.3s;
+    }
+    .container {
+      display: flex;
+    }
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background: #fff;
+      padding: 20px;
+      min-height: 100vh;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+    }
+    .sidebar a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px;
+      margin-bottom: 10px;
+      background: #f5f5f5;
+      border-radius: 8px;
+      color: #333;
+      text-decoration: none;
+    }
+    .sidebar a:hover {
+      background: #e0e0e0;
+    }
+    .sidebar .material-symbols-sharp {
+      font-size: 22px;
+    }
+    .msg_count {
+      background: red;
+      color: white;
+      padding: 2px 8px;
+      font-size: 12px;
+      border-radius: 50%;
+    }
+    /* Main */
+    .dashboard {
+      flex: 1;
+      padding: 20px;
+    }
+    .toggle-container {
+      text-align: right;
+    }
+    .overview {
+      margin: 20px 0;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    .overview h2 {
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+    .overview p {
+      font-size: 16px;
+      color: #444;
+    }
+    .cards {
+      display: flex;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .card {
+      flex: 1;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+    .card p {
+      font-size: 22px;
+      font-weight: bold;
+    }
+    canvas {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    }
+    .message-list {
+      margin-top: 30px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+    .message {
+      border-bottom: 1px solid #eee;
+      padding: 15px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .message:last-child {
+      border-bottom: none;
+    }
+    .message-info {
+      max-width: 65%;
+    }
+    .message-info strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+    .message-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    button.reply-btn {
+      padding: 6px 12px;
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.2s ease;
+    }
+    button.reply-btn:hover {
+      background-color: #45a049;
+    }
+    select.status-select {
+      padding: 5px 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    /* Dark mode */
+    body.dark-mode {
+      background-color: #121212;
+      color: #fff;
+    }
+    body.dark-mode .sidebar,
+    body.dark-mode .dashboard,
+    body.dark-mode .card,
+    body.dark-mode .overview,
+    body.dark-mode .message-list,
+    body.dark-mode canvas {
+      background-color: #1e1e1e;
+      color: #fff;
+    }
+    body.dark-mode .sidebar a {
+      background: #2a2a2a;
+      color: #fff;
+    }
+    body.dark-mode .sidebar a:hover {
+      background: #333;
+    }
+    body.dark-mode .message {
+      border-color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <a href="#">
+        <span class="material-symbols-sharp">mail_outline</span>
+        <h3>Messages</h3>
+        <span class="msg_count" id="msgCount">0</span>
+      </a>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="dashboard">
+      <div class="toggle-container">
+        <label><input type="checkbox" id="darkModeToggle" /> Dark Mode</label>
+      </div>
+
+      <div class="overview">
+        <h2>📊 Message Overview</h2>
+        <p>This week, you've received multiple customer inquiries related to sales, orders, and support. Keep track of customer needs to improve service and sales.</p>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Total Sales</h3>
+          <p>$12,300</p>
+        </div>
+        <div class="card">
+          <h3>Total Income</h3>
+          <p>$9,700</p>
+        </div>
+        <div class="card">
+          <h3>Total Expenses</h3>
+          <p>$3,200</p>
+        </div>
+      </div>
+
+      <canvas id="performanceChart" height="100"></canvas>
+
+      <div class="message-list" id="messageList">
+        <!-- Messages will appear here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const messages = [
+      { id: 1, sender: "Priyanshi", content: "Can I track my order?", date: "2025-06-01", status: "New" },
+      { id: 2, sender: "Alia", content: "Payment failed. Please help.", date: "2025-06-02", status: "New" },
+      { id: 3, sender: "Niharika", content: "Invoice needed for my purchase.", date: "2025-06-02", status: "In Progress" },
+      { id: 4, sender: "Priya Sharma", content: "Thank you for the support!", date: "2025-06-03", status: "Resolved" },
+      { id: 5, sender: "Dipansji", content: "Wrong item delivered.", date: "2025-06-03", status: "New" },
+      { id: 6, sender: "Sneha", content: "How to return a product?", date: "2025-06-03", status: "In Progress" },
+      { id: 7, sender: "Lina", content: "Great service. Thanks!", date: "2025-06-03", status: "Resolved" },
+      { id: 8, sender: "Sara Khan", content: "Delay in deliver update?", date: "2025-06-03", status: "New" },
+      { id: 9, sender: "Nishu Khan", content: "Delay in shipping update?", date: "2025-06-03", status: "New" },
+      { id: 10, sender: "Priyanka", content: "Wrong item delivered", date: "2025-06-09", status: "New" },
+    ];
+
+    // Update message count
+    document.getElementById("msgCount").textContent = messages.length;
+
+    // Display messages with Reply button and Status dropdown
+    const messageList = document.getElementById("messageList");
+    function renderMessages() {
+      messageList.innerHTML = "";
+      messages.forEach(msg => {
+        const div = document.createElement("div");
+        div.classList.add("message");
+        div.innerHTML = `
+          <div class="message-info">
+            <strong>${msg.sender} (${msg.date})</strong>
+            <p>${msg.content}</p>
+          </div>
+          <div class="message-actions">
+            <button class="reply-btn" data-id="${msg.id}">Reply</button>
+            <select class="status-select" data-id="${msg.id}">
+              <option value="New" ${msg.status === "New" ? "selected" : ""}>New</option>
+              <option value="In Progress" ${msg.status === "In Progress" ? "selected" : ""}>In Progress</option>
+              <option value="Resolved" ${msg.status === "Resolved" ? "selected" : ""}>Resolved</option>
+            </select>
+          </div>
+        `;
+        messageList.appendChild(div);
+      });
+
+      // Attach event listeners for reply buttons
+      document.querySelectorAll(".reply-btn").forEach(btn => {
+        btn.addEventListener("click", e => {
+          const id = parseInt(e.target.dataset.id);
+          const msg = messages.find(m => m.id === id);
+          alert(`Reply to ${msg.sender}: "${msg.content}"`);
+        });
+      });
+
+      // Attach event listeners for status changes
+      document.querySelectorAll(".status-select").forEach(select => {
+        select.addEventListener("change", e => {
+          const id = parseInt(e.target.dataset.id);
+          const newStatus = e.target.value;
+          const msgIndex = messages.findIndex(m => m.id === id);
+          if (msgIndex > -1) {
+            messages[msgIndex].status = newStatus;
+            // Optional: show confirmation or update UI in some way
+          }
+        });
+      });
+    }
+
+    renderMessages();
+
+    // Chart setup
+    const ctx = document.getElementById("performanceChart").getContext("2d");
+    new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        datasets: [
+          {
+            label: "Sales",
+            data: [2000, 1500, 1800, 2100, 1700, 1200, 2000],
+            backgroundColor: "#4CAF50"
+          },
+          {
+            label: "Expenses",
+            data: [500, 600, 400, 700, 300, 500, 200],
+            backgroundColor: "#F44336"
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: "Weekly Sales & Expenses Overview"
+          }
+        }
+      }
+    });
+
+    // Dark mode toggle
+    document.getElementById("darkModeToggle").addEventListener("change", () => {
+      document.body.classList.toggle("dark-mode");
+    });
+  </script>
+</body>
+</html>
