@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #8fbc8f66;
+      color: #101011;
+    }
+
+    .settings-container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: #a6b8db94;
+      padding: 35px;
+      border-radius: 16px;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.4);
+    }
+
+    h2 {
+      margin-bottom: 25px;
+      font-size: 28px;
+      font-weight: 600;
+      text-align: center;
+      color: #34495e;
+    }
+
+    .profile-photo {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .profile-photo img {
+      width: 110px;
+      height: 110px;
+      border-radius: 16px;
+      object-fit: cover;
+      background-color: #fafafa;
+      margin-bottom: 10px;
+      border: none;
+      padding: 5px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="file"] {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #dfe6ec;
+      border-radius: 10px;
+      background: #f8fafcf4;
+      font-size: 15px;
+      transition: 0.2s;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      border-color: #007bff;
+      background: #fff;
+      outline: none;
+    }
+
+    .toggle-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 18px 0;
+      padding: 12px 0;
+      border-top: 1px solid #eee;
+    }
+
+    .toggle-row label {
+      font-weight: 500;
+    }
+
+    .toggle-row input[type="checkbox"] {
+      transform: scale(1.4);
+      accent-color: #007bff;
+    }
+
+    .btn-save {
+      width: 100%;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 40px;
+      transition: background 0.2s;
+    }
+
+    .btn-save:hover {
+      background-color: #0056b3;
+    }
+
+    .theme-toggle {
+      margin-top: 15px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .theme-toggle label {
+      margin-right: 10px;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.85em;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="settings-container">
+    <h2>Account Settings</h2>
+
+    <div class="profile-photo">
+      <img src="https://via.placeholder.com/100" id="profilePic" alt="Profile Photo">
+      <input type="file" id="photoUpload" accept="image/*">
+    </div>
+
+    <form id="settingsForm">
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" placeholder="Enter your name" />
+        <div class="error" id="nameError"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter your username" />
+        <div class="error" id="usernameError"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="mobile">Mobile Number</label>
+        <input type="text" id="mobile" placeholder="Enter your number" />
+        <div class="error" id="mobileError"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email" />
+        <div class="error" id="emailError"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Change Password</label>
+        <input type="password" id="password" placeholder="New password" />
+        <div class="error" id="passError"></div>
+      </div>
+
+      <div class="toggle-row">
+        <label for="notify">Enable Notifications</label>
+        <input type="checkbox" id="notify" checked />
+      </div>
+
+      <div class="toggle-row">
+        <label for="newsletter">Subscribe to newsletter</label>
+        <input type="checkbox" id="newsletter" />
+      </div>
+
+      <div class="theme-toggle">
+        <label for="darkMode">Dark Mode</label>
+        <input type="checkbox" id="darkMode" />
+      </div>
+
+      <button type="submit" class="btn-save">Save Changes</button>
+    </form>
+
+  </div>
+
+  <script>
+    // Profile preview
+    const photoUpload = document.getElementById('photoUpload');
+    const profilePic = document.getElementById('profilePic');
+
+    photoUpload.addEventListener('change', function () {
+      const file = photoUpload.files[0];
+      if (file) {
+        profilePic.src = URL.createObjectURL(file);
+      }
+    });
+
+    // Validation
+    document.getElementById('settingsForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      let valid = true;
+
+      const name = document.getElementById('fullName').value.trim();
+      const username = document.getElementById('username').value.trim();
+      const mobile = document.getElementById('mobile').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const pass = document.getElementById('password').value.trim();
+
+      // Clear errors
+      document.getElementById('nameError').textContent = '';
+      document.getElementById('usernameError').textContent = '';
+      document.getElementById('mobileError').textContent = '';
+      document.getElementById('emailError').textContent = '';
+      document.getElementById('passError').textContent = '';
+
+      if (name === '') {
+        document.getElementById('nameError').textContent = 'Name is required.';
+        valid = false;
+      }
+
+      if (username === '') {
+        document.getElementById('usernameError').textContent = 'Username is required.';
+        valid = false;
+      }
+
+      if (mobile === '' || !/^\d{10}$/.test(mobile)) {
+        document.getElementById('mobileError').textContent = 'Enter a valid 10-digit mobile number.';
+        valid = false;
+      }
+
+      if (email === '' || !/^\S+@\S+\.\S+$/.test(email)) {
+        document.getElementById('emailError').textContent = 'Enter a valid email.';
+        valid = false;
+      }
+
+      if (pass !== '' && pass.length < 6) {
+        document.getElementById('passError').textContent = 'Password must be at least 6 characters.';
+        valid = false;
+      }
+
+      if (valid) {
+        alert('Changes saved successfully!');
+
+        // Reset form fields
+        document.getElementById('settingsForm').reset();
+
+        // Reset profile pic to default
+        profilePic.src = "";
+
+        // Clear error messages
+        document.getElementById('nameError').textContent = '';
+        document.getElementById('usernameError').textContent = '';
+        document.getElementById('emailError').textContent = '';
+        document.getElementById('passError').textContent = '';
+      }
+
+      if (valid) {
+        window.location.href = 'index.html'; // Change 'index.html' to your home page URL
+      }
+
+
+    });
+
+    // Dark mode
+    const darkToggle = document.getElementById('darkMode');
+    darkToggle.addEventListener('change', () => {
+      const root = document.body;
+      const container = document.querySelector('.settings-container');
+      if (darkToggle.checked) {
+        root.style.backgroundColor = '#1e1e2f';
+        root.style.color = '#fff';
+        container.style.backgroundColor = '#2c2c3c';
+        container.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.5)';
+      } else {
+        root.style.backgroundColor = '#8fbc8f66';
+        root.style.color = '#101011';
+        container.style.backgroundColor = '#a6b8db94';
+        container.style.boxShadow = '0 3px 5px 1px rgba(0, 0, 0, 0.4)';
+      }
+    });
+  </script>
+</body>
+
+</html>
