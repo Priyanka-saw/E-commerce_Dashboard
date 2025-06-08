@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Logout</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #a6b8db94;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .logout-box {
+      background: white;
+      padding: 30px 25px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      border-radius: 12px;
+      max-width: 350px;
+      width: 90%;
+    }
+
+    .logout-box .material-icons {
+      font-size: 48px;
+      color: #d71c51;
+      margin-bottom: 15px;
+    }
+
+    .logout-box h2 {
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .logout-box p {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    .logout-box button {
+      padding: 10px 25px;
+      border: none;
+      border-radius: 6px;
+      background-color: #d71c51;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .logout-box button:hover {
+      background-color: #b61643;
+    }
+
+    .logout-box a {
+      display: block;
+      margin-top: 15px;
+      text-decoration: none;
+      color: #555;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="logout-box">
+    <span class="material-icons">logout</span>
+    <h2>Ready to leave?</h2>
+    <p>Click below to log out from your account.</p>
+    <button onclick="handleLogout()">Log Out</button>
+    <a href="index.html">Cancel</a>
+  </div>
+
+  <script>
+    function handleLogout() {
+      // Clear saved data or tokens here if needed
+      alert("You have been logged out.");
+      window.location.href = "login.html"; // or homepage
+    }
+  </script>
+</body>
+</html>
