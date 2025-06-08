@@ -59,7 +59,7 @@ nav ul {
   align-items: center;
   justify-content: space-evenly;
   padding: 10px;
-  background-color: #95bfb1;
+  background: #a6b8db94;
 }
 
 .container {
@@ -153,12 +153,12 @@ aside .logo{
   gap: 1rem;
 }
 
-
-
 /* sidebar */
 
 aside .sidebar{
-  background-color: var(--clr-white);
+  /* background-color: var(--clr-white); */
+      background: #a6b8db94;
+
   display: flex;
   flex-direction: column;
   height: 85vh;
@@ -173,7 +173,8 @@ aside h3{
 
 aside .sidebar a {
   display: flex;
-  color: var(--clr-info-dark);
+  /* color: var(--clr-info-dark); */
+
   margin-left: 2rem;
   gap: 1rem;
   align-items: center;
@@ -248,11 +249,13 @@ main .insights{
   
 }
 main .insights > div{
-  background-color: var(--clr-white);
+  /* background-color: var(--clr-white); */
+   background-color: #8fbc8f66;
+
   padding: var(--card-padding);
   border-radius: var(--card-border-radius);
   margin-top: 1rem;
-  box-shadow: var(--box-shadow);
+      box-shadow: 3px 3px 4px 2px rgba(0, 0, 0, 0.4);
   transition: all .3s ease;
 }
 
@@ -346,7 +349,7 @@ main .recent_order h2{
   color: var(--clr-dark);
 }
 main .recent_order table{
-  background-color: var(--clr-white);
+      background-color: #8fbc8f66;
   width: 100%;
   border-radius: var(--card-border-radius);
   text-align: center;
@@ -369,6 +372,10 @@ main table tbody td{
   height: 3.8rem;
   /* border-bottom: 1px solid var(--clr-dark); */
 
+}
+
+main .recent_order h1{
+  margin-bottom: 7px;
 }
 
 main table tbody tr:last-child td{
@@ -438,7 +445,7 @@ main .recent_order a{
   margin-left: -20px;
 }
 .right .recent_updates .updates{
-  background-color: var(--clr-white);
+      background-color: #8fbc8f66;
   padding: var(--card-padding);
   border-radius: var(--card-border-radius);
   box-shadow: var(--box-shadow);
@@ -460,7 +467,7 @@ main .recent_order a{
 
 }
 .right .sales_analytics .item{
-  background-color: var(--clr-white);
+      background: #a6b8db94;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -470,7 +477,7 @@ main .recent_order a{
   margin-bottom: 0.8rem;
   padding: 1.4rem var(--card-padding);
   border-radius: var(--border-radius-3);
-  box-shadow: var(--box-shadow);
+      box-shadow: 3px 3px 4px 2px rgba(0, 0, 0, 0.4);
 
 }
 .right .sales_analytics .item:hover{
@@ -539,8 +546,6 @@ footer{
     display: flex;
     justify-content: space-between;
 }
-
-
 
 /* responsive by using media querying */
 @media screen and (max-width:1200px) {
