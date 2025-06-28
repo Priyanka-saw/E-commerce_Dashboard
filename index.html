@@ -1,31 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard UI</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
-   <script 
-    src="https://kit.fontawesome.com/f320e72acb.js" 
-    crossorigin="anonymous">
-    </script>
+  <script src="https://kit.fontawesome.com/f320e72acb.js" crossorigin="anonymous">
+  </script>
 </head>
+
 <body>
   <!-- Navigation bar -->
   <nav>
     <ul>
-     <a href="index.html"><li>Home</li></a>
-     <a href=""><li>About</li></a>
-     <a href="/contactUs/index.html"><li>Contact us</li></a>
-     <a href=""><li>Services</li></a>
+      <a href="index.html">
+        <li>Home</li>
+      </a>
+      <a href="">
+        <li>About</li>
+      </a>
+      <a href="/contactUs/index.html">
+        <li>Contact us</li>
+      </a>
+      <a href="">
+        <li>Services</li>
+      </a>
 
     </ul>
   </nav>
 
   <div class="container">
     <!-- Sidebar section -->
-     
+
     <aside>
       <div class="top">
         <div class="logo">
@@ -88,128 +96,128 @@
     </aside>
 
     <!-- main section start -->
-   <main>
-  <h1>Dashboard</h1>
+    <main>
+      <h1>Dashboard</h1>
 
-  <div class="date">
-    <input type="date">
-  </div>
-
-  <div class="insights">
-
-    <!-- Start sellings -->
-    <div class="sales">
-      <span class="material-symbols-sharp">trending_up</span>
-      <div class="middle">
-        <div class="left">
-          <h3>Total Sales</h3>
-          <h1>$25,023</h1>
-        </div>
-
-        <div class="progress">
-          <svg>
-            <circle r="30" cy="40" cx="40"></circle>
-          </svg>
-          <div class="number">80%</div>
-        </div>
+      <div class="date">
+        <input type="date">
       </div>
-      <small>Last 24 hours</small>
-    </div>
 
-    <!-- Start expenses -->
-    <div class="expenses">
-      <span class="material-symbols-sharp">local_atm</span>
-      <div class="middle">
-        <div class="left">
-          <h3>Total Expenses</h3>
-          <h1>$14,512</h1>
+      <div class="insights">
+
+        <!-- Start sellings -->
+        <div class="sales">
+          <span class="material-symbols-sharp">trending_up</span>
+          <div class="middle">
+            <div class="left">
+              <h3>Total Sales</h3>
+              <h1>$25,023</h1>
+            </div>
+
+            <div class="progress">
+              <svg>
+                <circle r="30" cy="40" cx="40"></circle>
+              </svg>
+              <div class="number">80%</div>
+            </div>
+          </div>
+          <small>Last 24 hours</small>
         </div>
 
-        <div class="progress">
-          <svg>
-            <circle r="30" cy="40" cx="40"></circle>
-          </svg>
-          <div class="number">60%</div>
+        <!-- Start expenses -->
+        <div class="expenses">
+          <span class="material-symbols-sharp">local_atm</span>
+          <div class="middle">
+            <div class="left">
+              <h3>Total Expenses</h3>
+              <h1>$14,512</h1>
+            </div>
+
+            <div class="progress">
+              <svg>
+                <circle r="30" cy="40" cx="40"></circle>
+              </svg>
+              <div class="number">60%</div>
+            </div>
+          </div>
+          <small>Last 24 hours</small>
         </div>
+
+        <!-- Start income -->
+        <div class="income">
+          <span class="material-symbols-sharp">stacked_line_chart</span>
+          <div class="middle">
+            <div class="left">
+              <h3>Total Income</h3>
+              <h1>$40,000</h1>
+            </div>
+
+            <div class="progress">
+              <svg>
+                <circle r="30" cy="40" cx="40"></circle>
+              </svg>
+              <div class="number">90%</div>
+            </div>
+          </div>
+          <small>Last 24 hours</small>
+        </div>
+
+      </div> <!-- End of insights -->
+
+      <!-- start recent orders -->
+      <div class="recent_order">
+        <h1>Recent Orders</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Product Number</th>
+              <th>Payments</th>
+              <th>Status</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mini USB</td>
+              <td>456</td>
+              <td>Due</td>
+              <td class="warning">Pending</td>
+              <td class="primary">Details</td>
+            </tr>
+            <tr>
+              <td>Mini USB</td>
+              <td>456</td>
+              <td>Due</td>
+              <td class="warning">Pending</td>
+              <td class="primary">Details</td>
+            </tr>
+            <tr>
+              <td>Mini USB</td>
+              <td>456</td>
+              <td>Due</td>
+              <td class="warning">Pending</td>
+              <td class="primary">Details</td>
+            </tr>
+            <tr>
+              <td>Mini USB</td>
+              <td>456</td>
+              <td>Due</td>
+              <td class="warning">Pending</td>
+              <td class="primary">Details</td>
+            </tr>
+            <tr>
+              <td>Mini USB</td>
+              <td>456</td>
+              <td>Due</td>
+              <td class="warning">Pending</td>
+              <td class="primary">Details</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <small>Last 24 hours</small>
-    </div>
 
-    <!-- Start income -->
-    <div class="income">
-      <span class="material-symbols-sharp">stacked_line_chart</span>
-      <div class="middle">
-        <div class="left">
-          <h3>Total Income</h3>
-          <h1>$40,000</h1>
-        </div>
-
-        <div class="progress">
-          <svg>
-            <circle r="30" cy="40" cx="40"></circle>
-          </svg>
-          <div class="number">90%</div>
-        </div>
-      </div>
-      <small>Last 24 hours</small>
-    </div>
-
-  </div> <!-- End of insights -->
-
-  <!-- start recent orders -->
-  <div class="recent_order">
-    <h1>Recent Orders</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Product Name</th>
-          <th>Product Number</th>
-          <th>Payments</th>
-          <th>Status</th>
-          <th>Details</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Mini USB</td>
-          <td>456</td>
-          <td>Due</td>
-          <td class="warning">Pending</td>
-          <td class="primary">Details</td>
-        </tr>
-        <tr>
-          <td>Mini USB</td>
-          <td>456</td>
-          <td>Due</td>
-          <td class="warning">Pending</td>
-          <td class="primary">Details</td>
-        </tr>
-        <tr>
-          <td>Mini USB</td>
-          <td>456</td>
-          <td>Due</td>
-          <td class="warning">Pending</td>
-          <td class="primary">Details</td>
-        </tr>
-        <tr>
-          <td>Mini USB</td>
-          <td>456</td>
-          <td>Due</td>
-          <td class="warning">Pending</td>
-          <td class="primary">Details</td>
-        </tr>
-        <tr>
-          <td>Mini USB</td>
-          <td>456</td>
-          <td>Due</td>
-          <td class="warning">Pending</td>
-          <td class="primary">Details</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-</main>
+    </main>
 
 
     <!-- Right section -->
@@ -241,41 +249,41 @@
 
         <div class="updates">
 
-        <div class="update">
-          <div class="profile-photo">
-            <img src="./assets/profile-img.png" alt="">
+          <div class="update">
+            <div class="profile-photo">
+              <img src="./assets/profile-img.png" alt="">
+            </div>
+            <div class="message">
+              <p><b>Piya</b> Received her orders</p>
+            </div>
           </div>
-          <div class="message">
-            <p><b>Piya</b> Received her orders</p>
-          </div>
-        </div>
 
-        <div class="update">
-          <div class="profile-photo">
-            <img src="./assets/profile-img.png" alt="">
+          <div class="update">
+            <div class="profile-photo">
+              <img src="./assets/profile-img.png" alt="">
+            </div>
+            <div class="message">
+              <p><b>Surbhi</b> Received her orders</p>
+            </div>
           </div>
-          <div class="message">
-            <p><b>Surbhi</b> Received her orders</p>
-          </div>
-        </div>
 
-        <div class="update">
-          <div class="profile-photo">
-            <img src="./assets/profile-img.png" alt="">
+          <div class="update">
+            <div class="profile-photo">
+              <img src="./assets/profile-img.png" alt="">
+            </div>
+            <div class="message">
+              <p><b>Priyanshi</b> Received her orders</p>
+            </div>
           </div>
-          <div class="message">
-            <p><b>Priyanshi</b> Received her orders</p>
-          </div>
-        </div>
 
-        <div class="update">
-          <div class="profile-photo">
-            <img src="./assets/profile-img.png" alt="">
+          <div class="update">
+            <div class="profile-photo">
+              <img src="./assets/profile-img.png" alt="">
+            </div>
+            <div class="message">
+              <p><b>Komal</b> Received her orders</p>
+            </div>
           </div>
-          <div class="message">
-            <p><b>Komal</b> Received her orders</p>
-          </div>
-        </div>
         </div>
       </div>
 
@@ -344,64 +352,65 @@
 
   <!-- footer section -->
 
-      <footer>
-        <div class="foot-sec">
-            <div class="logo">
-          <h2>Manage<span>X</span></h2>
-            </div>
-            <div class="main-link">
-                <h3>Main Link</h3>
-               <ul type="none">
-                <a href="analytics.html">
-                  <li>Sales Tracking</li>
-                  </a>
-                <a href="">
-                  <li>Expenses tracking</li>
-                  </a>
-                <a href="customer.html">
-                  <li>Income tracking</li>
-                  </a>
-                <a href="contactUs/index.html">
-                  <li>Contact Us</li>
-                  </a>
-                <a href="">
-                <li>News & Blogs</li>
-                </a>
-               </ul>
-            </div>
-            
-            <div class="main-link">
-                <h3>Supports</h3>
-               <ul type="none">
-                <li>About Us</li>
-                <li>Privacy Policy</li>
-                <li>Terms & Conditions</li>
-               </ul>
-            </div>
+  <footer>
+    <div class="foot-sec">
+      <div class="logo">
+        <h2>Manage<span>X</span></h2>
+      </div>
+      <div class="main-link">
+        <h3>Main Link</h3>
+        <ul type="none">
+          <a href="analytics.html">
+            <li>Sales Tracking</li>
+          </a>
+          <a href="">
+            <li>Expenses tracking</li>
+          </a>
+          <a href="customer.html">
+            <li>Income tracking</li>
+          </a>
+          <a href="contactUs/index.html">
+            <li>Contact Us</li>
+          </a>
+          <a href="">
+            <li>News & Blogs</li>
+          </a>
+        </ul>
+      </div>
 
-            <div class="join">
-                <h3>Supports</h3>
-                <input type="email" placeholder="Ente your Email..">
-                <h3>Follows Us</h3>
-                
-                <div class="icon-container">
-                    <div class="icon">
-                        <i class="fa fa-facebook"></i>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-Twitter"></i>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-instagram"></i>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-youtube"></i>
-                    </div>
-                </div>
-            </div>
+      <div class="main-link">
+        <h3>Supports</h3>
+        <ul type="none">
+          <li>About Us</li>
+          <li>Privacy Policy</li>
+          <li>Terms & Conditions</li>
+        </ul>
+      </div>
+
+      <div class="join">
+        <h3>Supports</h3>
+        <input type="email" placeholder="Ente your Email..">
+        <h3>Follows Us</h3>
+
+        <div class="icon-container">
+          <div class="icon">
+            <i class="fa fa-facebook"></i>
+          </div>
+          <div class="icon">
+            <i class="fa fa-Twitter"></i>
+          </div>
+          <div class="icon">
+            <i class="fa fa-instagram"></i>
+          </div>
+          <div class="icon">
+            <i class="fa fa-youtube"></i>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
+
 </html>
